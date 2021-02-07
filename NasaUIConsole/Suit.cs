@@ -34,14 +34,14 @@
             public int ID
             {
                 get { return id; } // read
-                                   //set { id = value; } // write
+                //set { id = value; } // write
             }
 
             // get/set property for Suit title
             public bool SAFE
             {
                 get { return safe; } // read
-                //set { safe = value; } // write
+                set { safe = value; } // write
             }
 
 

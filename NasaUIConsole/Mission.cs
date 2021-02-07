@@ -10,10 +10,10 @@ namespace NasaUIConsole
         protected static int numMissions = 0;
         protected int id = 0;
         protected string title = "[DEFAULT TITLE]";
+        protected bool complete = false;
         //protected static List<DateTime> dates = new List<DateTime>();
         //private static List<Note> notebooks = new List<Note>();
         //private static List<Maps> map = new List<Maps>();
-        protected bool complete = false;
 
         // constructor
         public Mission()
@@ -42,28 +42,27 @@ namespace NasaUIConsole
         }
 
         // methods/verbs
-        //public void printTotalUserssss() { Console.WriteLine("Total Users: " + User.numUsers); }
         public void printMission() { Console.WriteLine("Mission ID: " + ID + " with title: " + TITLE + " with status: " + COMPLETE + "."); }
 
         // property to get private mission ID
         public int ID
         {
             get { return id; } // read
-            //set { id = value; } // write
+            set { id = value; } // write
         }
 
         // get/set property for mission title
         public string TITLE
         {
             get { return title;  } // read
-            //set { TITLE = value; } // write
+            set { title = value; } // write
         }
 
         // get/set property for mission status
         public bool COMPLETE
         {
             get { return complete; } // read
-            //set { COMPLETE = value; } // write
+            set { complete = value; } // write
         }
     }
 }
