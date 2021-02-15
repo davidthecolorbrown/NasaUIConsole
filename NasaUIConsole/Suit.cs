@@ -13,7 +13,7 @@
             //private static List<Vitals> vitals = new List<Vitals>();
             //private HoloLens = new HoloLens();
             protected bool safe = true;
-            protected enum vitalsToRead { oxygen, h20, heartrate, temperature, stress };
+            protected enum vitalsToRead { prim_oxygen, sec_oxygen, eva_time, subpressure, h20, heart_rate, suit_pressure, temperature, fan_tachometer, oxygen_pressure, oxygen_rate, water_pressure_gas, water_pressure_liquid, sop_pressure, sop_rate, battery_cap, battery_time, oxygen_time, water_time, stress };
 
             // constructor
             public Suit()
@@ -25,6 +25,18 @@
                 this.id = numSuits;
 
                 Console.WriteLine("New Suit created with ID: " + id);
+
+                // initialize vitals for astronaut/suit
+                //for ... {Vital vital = new Vital(vitalsToRead);}
+                // add each vital to vitals list
+                //List<Vital> vitals = new List<Vital>();
+                // add vitals to suit using vitalsToRead
+                //vitals.add();
+
+                // initialize sensors/telemetry stream data in Vital class
+                    // telemetry stream (Load ApiHelper) OR sensor data (Load sensor data from bluetooth)
+                    // create timer/thread to continuously run and collect telemetry/sensor data each second
+                    // save to SQL lite?
             }
 
             // methods/verbs
