@@ -4,6 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http; // import HttpClient class 
 using System.Net.Http.Formatting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 namespace NasaUIConsole
 {
@@ -11,11 +14,22 @@ namespace NasaUIConsole
 	IAmTimCorey youtube channel helped create this
 	* url: https://www.youtube.com/watch?v=aWePkE2ReGw
 	* ReadAsAsync method: https://stackoverflow.com/questions/10399324/where-is-httpcontent-readasasync#10399419
-	 
+
+
+	protected string path_to_write = "C:\\windows\\file\\path";
+	protected string path_to_read = "http://www.localhost.com/api/database";
+	protected bool connected;
+	protected bool bluetooth;
+	protected bool wifi;
+	protected bool file;
+	protected bool sql;
+	protected bool sensor;
+	protected bool read;
+	protected bool write;
 	*/
 
 	// class for interacting with NASA SUITS database (mongoDB)
-	public static class ApiHelper
+	public static class Data
 	{
 		// create new http client for api with single api client (thread-safe)
 		public static HttpClient api { get; set; }
@@ -64,15 +78,18 @@ namespace NasaUIConsole
 				// set api url to obtain recent suit data
 				url = base_url + "api/simulation/state";
 				//url = $"{ base_url }api/simulation/state";
-				Console.WriteLine("url: " + url);
+				//Console.WriteLine("url: " + url);
 			}
 
 			// new request using a single open api client and gets this as response
-			using (HttpResponseMessage res = await ApiHelper.api.GetAsync(url))
+			using (HttpResponseMessage res = await Data.api.GetAsync(url))
             {
 				// if response is successful, read back data
 				if (res.IsSuccessStatusCode)
                 {
+					//
+					//TelemetryModel model = JsonConvert.DeserializeObject<TelemetryModel>(res);
+
 					// create new object for telemetry data
 					// takes data into as json and maps onto telemetry model, ignoring properties that don't match
 					TelemetryModel telemetry = await res.Content.ReadAsAsync<TelemetryModel>();
@@ -97,32 +114,45 @@ namespace NasaUIConsole
 	public class TelemetryModel
 	{
 		// map telemetry stream json onto model properties 
-		//PUBLIC DATETIME TIME
-		//PUBLIC STRING TIME
-		//PUBLIC DATETIME STARTED_AT
+		public double TIME { get; set; }
+		//public DateTime TIMER { get; set; }
+		public string TIMER { get; set; }
+		public DateTime STARTED_AT { get; set; }
+
+		[JsonPropertyName("heart_bpm")]
 		public int HEART_BPM { get; set; }
-		public string P_SUB { get; set; }
-		public string P_SUIT { get; set; }
-		public string T_SUB { get; set; }
-		public string V_FAN { get; set; }
-		public string P_O2 { get; set; }
-		public string RATE_O2 { get; set; }
+		public double P_SUB { get; set; }
+		public double P_SUIT { get; set; }
+		public double T_SUB { get; set; }
+		public double V_FAN { get; set; }
+
 		public double BATTERY_PERCENT { get; set; }
 		public double BATTERYPERCENT { get; set; }
-		public int BATTERY_OUT { get; set; }
-		public int BATTERY_CAP { get; set; }
+		public double BATTERY_OUT { get; set; }
+		public double BATTERY_CAP { get; set; }
+
 		public string T_BATTERY { get; set; }
-		public string P_H20_G { get; set; }
-		public string P_H20_L { get; set; }
-		public string P_SOP { get; set; }
-		public string RATE_SOP { get; set; }
-		public string T_OXYGENPRIMARY { get; set; }
-		public string T_OXYGENSEC { get; set; }
-		public string OX_PRIMARY { get; set; }
-		public string OX_SECONDARY { get; set; }
-		public string T_OXYGEN { get; set; }
+
 		public double CAP_WATER { get; set; }
+
 		public string T_WATER { get; set; }
+
+		public double P_H20_G { get; set; }
+		public double P_H20_L { get; set; }
+
+
+		public double T_OXYGENPRIMARY { get; set; }
+		public double T_OXYGENSEC { get; set; }
+		public double OX_PRIMARY { get; set; }
+		public double OX_SECONDARY { get; set; }
+
+		public string T_OXYGEN { get; set; }
+
+		public double P_O2 { get; set; }
+		public double RATE_O2 { get; set; }
+		public double P_SOP { get; set; }
+		public double RATE_SOP { get; set; }
+
 	}
 
 }
