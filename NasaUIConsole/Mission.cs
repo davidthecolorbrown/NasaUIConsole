@@ -11,8 +11,8 @@ namespace NasaUIConsole
         protected int id = 0;
         protected string title = "[DEFAULT TITLE]";
         protected bool complete = false;
-        //protected static List<DateTime> dates = new List<DateTime>();
-        //private static List<Note> notebooks = new List<Note>();
+        protected static List<Note> notebook;// = new List<Note>();
+        //protected Dictionary<string, Note> notebook = new Dictionary<string, Note>();
         //private static List<Maps> map = new List<Maps>();
 
         // constructor
@@ -23,6 +23,11 @@ namespace NasaUIConsole
 
             // set new mission id to number of missions
             this.id = numMissions;
+
+            // instantiate notebook to create mission table of contents
+            Note tableOfContents = new Note();
+            // add first note into notebook
+            notebook.Add(tableOfContents);
 
             Console.WriteLine("New Mission created with ID: " + id);
         }
