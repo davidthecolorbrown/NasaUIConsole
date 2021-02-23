@@ -6,7 +6,7 @@ using System.Net.Http; // import HttpClient class
 using System.Net.Http.Formatting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Text.Json.Serialization;
+//using System.Text.Json.Serialization;
 
 namespace NasaUIConsole
 {
@@ -33,8 +33,9 @@ namespace NasaUIConsole
 	{
 		// create new http client for api with single api client (thread-safe)
 		public static HttpClient api { get; set; }
+		// get/set the base api address 
 
-		// initialize client 
+		// initialize client for streaming data through api 
 		public static void InitClient()
 		{
 			// create new api client and initialize 
@@ -49,6 +50,14 @@ namespace NasaUIConsole
 			// add header telling client to give json 
 			api.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 		}
+
+		// TODO: initialize client for streaming data from harddrive
+		//public static void InitDisk() {}
+		// TODO: initialize client for streaming data from sql 
+		//public static void InitSQL() {}
+		// TODO: initialize client for streaming data from sensors (bluetooth)
+		//public static void InitSensors() {}
+
 	}
 
 	// load json object 
@@ -119,7 +128,7 @@ namespace NasaUIConsole
 		public string TIMER { get; set; }
 		public DateTime STARTED_AT { get; set; }
 
-		[JsonPropertyName("heart_bpm")]
+		//[JsonPropertyName("heart_bpm")]
 		public int HEART_BPM { get; set; }
 		public double P_SUB { get; set; }
 		public double P_SUIT { get; set; }
