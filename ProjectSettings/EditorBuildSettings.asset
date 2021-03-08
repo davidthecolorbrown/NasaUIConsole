@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Design/HeartRateExample.unity
+    guid: 2960aa3801937a94695d03d9f9ab5806
+  - enabled: 0
+    path: Assets/Scenes/Design/InteractionExamples.unity
+    guid: 298bbd584d241db4e9a5d8ac4fde05d0
+  - enabled: 0
+    path: Assets/Scenes/Design/InteractionExamples2.unity
+    guid: 24647cf0bfb07c4448d693f0ede1cde3
+  - enabled: 0
+    path: Assets/Scenes/Design/MainMenus.unity
+    guid: 162a7e6e49c868b45ad9e56c24f6da12
+  - enabled: 0
+    path: Assets/Scenes/FinalUI.unity
+    guid: b1ba6606c3d1dc04c9a0d7a47f1b4570
+  - enabled: 1
+    path: Assets/Scenes/TestScenes.unity
+    guid: 0ada34d04d2119c4aaf58063db643c62
+  m_configObjects:
+    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 4bb0a44a451ab8e4f9a8242565068308,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d4b992db82a0abb49b55e29ea519703c,
+      type: 2}
