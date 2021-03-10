@@ -26,6 +26,8 @@ namespace SuitsUIConsole
             protected int id = 0;
             protected string title = "[DEFAULT TITLE]";
             protected bool complete = false;
+            protected bool started = false;
+            protected DateTime started_at;
             protected static List<Note> notebook;// = new List<Note>();
                                                  //protected Dictionary<string, Note> notebook = new Dictionary<string, Note>();
                                                  //private static List<Maps> map = new List<Maps>();
@@ -84,7 +86,18 @@ namespace SuitsUIConsole
                 get { return complete; } // read
                 set { complete = value; } // write
             }
-
+            // get/set property for mission status
+            public bool STARTED
+            {
+                get { return started; } // read
+                set { started = value; } // write
+            }
+            // get/set property for mission status
+            public DateTime STARTED_AT
+            {
+                get { return started_at; } // read
+                set { started_at = value; } // write
+            }
             
             // method to call when starting the mission from main thread
             public static Task StartMission()

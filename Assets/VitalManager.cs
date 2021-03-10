@@ -16,7 +16,7 @@ using TMPro;
 using SuitsUIConsole.Users;
 //using SuitsUIConsole.Datastream;
 
-public class Data : MonoBehaviour
+public class VitalManager : MonoBehaviour
 {
         // TODO: create a new vitals game object to communicate with mission control and update vitals on display
     // mission control to get data for vitals
@@ -28,17 +28,17 @@ public class Data : MonoBehaviour
     public static bool connected = false;
 
     // astronaut/suit vitals and whether they are dangerous
-    public double heart_bpm;
-    public bool heart_bpm_safe;
+    //public double heart_bpm;
+    //public bool heart_bpm_safe;
 
     // astronaut game object for updating heart rate vitals (2D sprite UI + canvas + textMeshPro UI component overlay)
-    public TextMeshProUGUI heartRate;
+    //public TextMeshProUGUI heartRate;
 
     // astronaut/suit vitals
-    //public string vitalName;
-    //public double vitalValue;
-    //public bool vitalSafety;
-    //public TextMeshProUGUI vitalDisplay;
+    public string vitalName;
+    public double vitalValue;
+    public bool vitalSafety;
+    public TextMeshProUGUI vitalDisplay;
     
     // game object for alerting astronaut about telemetry connection
     //public SpriteRenderer conn_indicator; //= //Get the renderer via GetComponent or have it cached previously
@@ -104,35 +104,36 @@ public class Data : MonoBehaviour
         try 
         {
             // update each vital and whether it is safe
-            heart_bpm = display["heart_bpm"];
-            heart_bpm_safe = safe["heart_bpm"];
-            //vitalValue = display[vitalName];
-            //vitalSafety = safe[vitalName];
+            //heart_bpm = display["heart_bpm"];
+            //heart_bpm_safe = safe["heart_bpm"];
+            vitalValue = display[vitalName];
+            vitalSafety = safe[vitalName];
 
             //
             //countCubes.text = "heart rate (bpm):" +  display["heart_bpm"].ToString();
             //heartRate.text = display["heart_bpm"].ToString() + "bpm";
-            heartRate.text = display["heart_bpm"].ToString();
-            Debug.Log("display[heart_bpm]: " + display["heart_bpm"]);
-            //vitalDisplay.text = display[vitalName].ToString();
-            //Debug.Log("display[" + vitalName + "]: " + display[vitalName]);
+            //heartRate.text = display["heart_bpm"].ToString();
+            //Debug.Log("display[heart_bpm]: " + display["heart_bpm"]);
+            vitalDisplay.text = display[vitalName].ToString();
+            Debug.Log("display[" + vitalName + "]: " + display[vitalName]);
             //heart_bpm_safe = safe["heart_bpm"];
 
             //test of safety
             //int test_bool = ((int) display["heart_bpm"]);
-            double test_bool = display["heart_bpm"];
-            if (test_bool % 2 == 0) 
-            {
+            //double test_bool = display["heart_bpm"];
+            //if (test_bool % 2 == 0) 
+            //{
                 // set the color to red 
-                heart_bpm_safe = false;
-                heartRate.color = new Color32(255, 0, 0, 255);
-            }
-            else
-            {
-                // set color to green
-                heartRate.color = new Color32(0, 255, 0, 255);
-            }
-            Debug.Log("safe[heart_bpm]: " + heart_bpm_safe);
+                //heart_bpm_safe = false;
+                //heartRate.color = new Color32(255, 0, 0, 255);
+            //}
+            //else
+            //{
+                //
+                //heartRate.color = new Color32(255, 255, 255, 255);
+            //}
+            //Debug.Log("safe[heart_bpm]: " + heart_bpm_safe);
+            Debug.Log("safe[" + vitalName+ "]: " + vitalSafety);
 
             // allow UI to display warning that telemetry stream is online
             connected = true;
