@@ -50,12 +50,17 @@ namespace SuitsUIConsole
 
                 // TODO: initialize suit vitals for all biometrics, oxygen, water, battery, and switches
                 // initialize new biometrics and add to dictionary for tracking
-                var heart_bpm = new Vital { NAME = "heart_bpm", TYPE = "biometric", UNIT = "bpm", MIN = 40, MAX = 160, CURRENT = 70 };
-                var p_suit = new Vital { NAME = "p_suit", TYPE = "biometric", UNIT = "psia", MIN = 2, MAX = 4, CURRENT = 3 };
-                var p_sub = new Vital { NAME = "p_sub", TYPE = "biometric", UNIT = "psia", MIN = 2, MAX = 4, CURRENT = 3 };
+                var heart_bpm = new Vital { NAME = "heart_bpm", TYPE = "biometric", UNIT = "bpm", MIN = 35, MAX = 185, CURRENT = 0 };
+                var p_suit = new Vital { NAME = "p_suit", TYPE = "biometric", UNIT = "psia", MIN = 2, MAX = 4, CURRENT = 0 };
+                var p_sub = new Vital { NAME = "p_sub", TYPE = "biometric", UNIT = "psia", MIN = 2, MAX = 4, CURRENT = 0 };
+                var t_sub = new Vital { NAME = "t_sub", TYPE = "biometric", UNIT = "f", MIN = 0, MAX = 100, CURRENT = 0 };
+                var v_fan = new Vital { NAME = "v_fan", TYPE = "biometric", UNIT = "rpm", MIN = 10000, MAX = 40000, CURRENT = 0 };
+
                 vitals.Add("heart_bpm", heart_bpm);
                 vitals.Add("p_suit", p_suit);
                 vitals.Add("p_sub", p_sub);
+                vitals.Add("t_sub", t_sub);
+                vitals.Add("v_fan", v_fan);
 
                 // increment num Suits to get id for new Suit
                 numSuits++;

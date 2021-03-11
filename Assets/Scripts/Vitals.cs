@@ -90,8 +90,8 @@ namespace SuitsUIConsole
                     vitals["heart_bpm"].CURRENT = data.HEART_BPM;
                     vitals["p_suit"].CURRENT = data.P_SUIT;
                     vitals["p_sub"].CURRENT = data.P_SUB;
-                    //vitals["t_sub"] = data.T_SUB;
-                    //vitals["v_fan"] = data.V_FAN;
+                    vitals["t_sub"].CURRENT = data.T_SUB;
+                    vitals["v_fan"].CURRENT = data.V_FAN;
                     //vitals["p_O2"] = data.P_O2;
                     //vitals["rate_O2"] = data.RATE_O2;
                     //vitals["t_oxygenprimary"] = data.T_OXYGENPRIMARY;
@@ -118,9 +118,9 @@ namespace SuitsUIConsole
                     //tmp["started_at"] = (data.STARTED_AT).ToString();
                     tmp["heart_bpm"] = (data.HEART_BPM).ToString();
                     tmp["p_suit"] = (data.P_SUIT).ToString();
-                    tmp["p_sub"] = data.P_SUB.ToString();
-                    //tmp["t_sub"] = data.T_SUB;
-                    //tmp["v_fan"] = data.V_FAN;
+                    tmp["p_sub"] = (data.P_SUB).ToString();
+                    tmp["t_sub"] = (data.T_SUB).ToString();
+                    tmp["v_fan"] = (data.V_FAN).ToString();
                     //tmp["p_O2"] = data.P_O2;
                     //tmp["rate_O2"] = data.RATE_O2;
                     //tmp["t_oxygenprimary"] = data.T_OXYGENPRIMARY;

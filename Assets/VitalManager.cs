@@ -121,17 +121,17 @@ public class VitalManager : MonoBehaviour
             //test of safety
             //int test_bool = ((int) display["heart_bpm"]);
             //double test_bool = display["heart_bpm"];
-            //if (test_bool % 2 == 0) 
-            //{
-                // set the color to red 
-                //heart_bpm_safe = false;
-                //heartRate.color = new Color32(255, 0, 0, 255);
-            //}
-            //else
-            //{
-                //
-                //heartRate.color = new Color32(255, 255, 255, 255);
-            //}
+            if (!vitalSafety) 
+            {
+                // set the color to red -- NOT SAFE!
+                //vitalSafety = false;
+                vitalDisplay.color = new Color32(255, 0, 0, 255);
+            }
+            else
+            {
+                // safe measurement -- set to green
+                vitalDisplay.color = new Color32(0, 255, 0, 255);
+            }
             //Debug.Log("safe[heart_bpm]: " + heart_bpm_safe);
             Debug.Log("safe[" + vitalName+ "]: " + vitalSafety);
 
