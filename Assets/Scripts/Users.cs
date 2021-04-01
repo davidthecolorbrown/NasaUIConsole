@@ -18,6 +18,7 @@ namespace SuitsUIConsole
         using SuitsUIConsole.Spacesuit.Vitals; // Vital() class
         using SuitsUIConsole.Spacesuit; // Suit() class
         using SuitsUIConsole.Mission; // Mission() class 
+        using SuitsUIConsole.Datastream; // FileIO() class
 
         // 
         public class User
@@ -88,10 +89,10 @@ namespace SuitsUIConsole
         {
 
             // variables/fields/attributes
-            private (int, int) home = (0, 0); // home = "<x, y>";
-            private (int, int) currPosition = (0, 0); // currPosition = "<x + dx, y + dy>";
-            private bool onMission = false;
-            private Suit suit;
+            public (int x, int y) home = (0, 0); // home = "<x, y>";
+            public (int dx, int dy) currPosition = (0, 0); // currPosition = "<x + dx, y + dy>";
+            public bool onMission = false;
+            public Suit suit;
             private Mission mission;
 
             // constructor
@@ -175,17 +176,19 @@ namespace SuitsUIConsole
                 set { mission = value; } // write
             }
 
-            public string HOME
+            /*
+            public (int x, int y) HOME
             {
                 get { return HOME; } // read
                 set { HOME = value; } // write
             }
 
-            public string CURRPOSITION
+            public (int dx, int dy) CURRPOSITION
             {
                 get { return CURRPOSITION; } // read
                 set { CURRPOSITION = value; } // write
             }
+            */
 
             public bool ONMISSION
             {
@@ -239,7 +242,10 @@ namespace SuitsUIConsole
                 // monitor oxygen/water/battery/biometrics/mission/uia/dcu switch
                 Suit suit = astronauts[0].SUIT; // get astronauts suit
                 suit.printSuit();
-
+                
+                // save astronaut object
+                //FileIO.SaveJSONFile(astronauts[0], false);
+                
                 //
                 Console.WriteLine("now checking API");
                 // set the interval for loading telemetry stream data 

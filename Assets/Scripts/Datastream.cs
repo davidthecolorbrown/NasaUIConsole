@@ -16,8 +16,15 @@ namespace SuitsUIConsole
         using System.Net.Http; // import HttpClient class 
         using System.Net.Http.Formatting;
 
+        // for FileIO
+        using System.IO;     
+        using Newtonsoft.Json;
+        using System.Net;
+        using Newtonsoft.Json.Linq;
+
 
         // class for interacting with NASA SUITS database (mongoDB)
+        // SuitsUI.Datastream.Data
         public static class Data
         {
             // create new http client for api with single api client (thread-safe)
@@ -50,8 +57,9 @@ namespace SuitsUIConsole
 
         }
 
-        // load json object 
+        // load telemetry stream json object with vitals
         //public class Telemetry
+        // SuitsUI.Datastream.Telemetry
         public static class Telemetry
         {
             // allows us to know range of values (min, max) for each json object key/value pair
@@ -111,6 +119,7 @@ namespace SuitsUIConsole
 
         // create a class for getting telemetry data for json 
         // class for telemetry stream data 
+        // SuitsUI.Datastream.TelemetryModel
         public class TelemetryModel
         {
             // map telemetry stream json onto model properties 
@@ -154,6 +163,104 @@ namespace SuitsUIConsole
 
         }
 
+        // dealing with file i/o (jsons) 
+        // SuitsUI.Datastream.FileIO
+        //public class DataManager : MonoBehaviour
+        public class FileIO
+        {
+            // object you want to load/save 
+            //public static string abspath = @"C:\Users\David\source\repos\DataManager\notebook.json";
+            //public static string abspath = @"C:\Users\David\Documents\school\eel4915 - senior design II\project\frontend\NasaSuitsUI\Assets\data.json";
+            //public static string abspath = @"C:\Users\David\Dropbox\My PC (DESKTOP-TAD6B6P)\Desktop\astronaut.json";
+            //public static string abspath = @"C:\Users\David\Documents\school\eel4915 - senior design II\project\frontend\NasaSuitsUI\Assets\Data\test_data\astronaut_test.json";
+            public static string abspath = @"C:\Users\David\Documents\school\eel4915 - senior design II\project\frontend\NasaSuitsUI\Assets\Data\astronaut.json";
+            //public static string filepath = "";
+
+
+            //
+            public static void SaveJSONFile(Object jsonObj, bool overwrite)
+            //public static void SaveJSONFile(Object jsonObj, string filepath, bool overwrite)
+            {
+                // write to json file
+                //Console.WriteLine("path: {0}", abspath);
+
+                // write JSON directly to a file
+                JObject jsonFile = JObject.FromObject(jsonObj);
+                using (StreamWriter file = File.CreateText(abspath))
+                using (JsonTextWriter writer = new JsonTextWriter(file))
+                {
+                    jsonFile.WriteTo(writer);
+                }
+            }
+
+            // load any object from json file at given filepath
+            public static Object loadJSONFile(string filepath)
+            {
+                // read file into a string and deserialize JSON to a type
+                Object json = JsonConvert.DeserializeObject<Object>(File.ReadAllText(@filepath));
+
+                // return generic Object from json file (must recast to specific object from calling function!)
+                return json;
+            }
+
+            // load json string as object
+            public static Object convertJSONStringToObj(Object jsonObj, string json)
+            {
+                // convert string representation of json to json object
+                jsonObj = JsonConvert.DeserializeObject<Object>(json);
+
+                // return loaded JSON Object
+                return jsonObj;
+            }
+
+            // create a new directory at 'abspath/../path/to/dir/' 
+            public static void createFileDir(string subdir)
+            {
+                // Create a sub directory
+                if (!Directory.Exists(subdir))
+                {
+                    Directory.CreateDirectory(subdir);
+                }
+            }
+
+            // load configuration for application
+            //public static int loadAppConfig() {}
+
+            // load astronauts data 
+            /*
+            public static void loadAstronautJSON(Object jsonObj, string filepath)
+            {
+                JObject o1 = JObject.Parse(File.ReadAllText(@"c:\videogames.json"));
+
+                // read JSON directly from a file
+                using (StreamReader file = File.OpenText(@"c:\videogames.json"))
+                using (JsonTextReader reader = new JsonTextReader(file))
+                {
+                    JObject o2 = (JObject)JToken.ReadFrom(reader);
+                }
+
+                // notebook json -- collection of notes for each mission 
+                string json = @"{
+                'numNotes': '4'
+                'id': '0',
+                'title': 'mission notebook title',
+                'date': '1995-4-7T00:00:00',
+                'body': 'body media (text, audio, video, image)',
+                'mediaType': '0'
+                'notes': ['Mission.DESCRIPTION', 'TasksObj', 'InstructionObj', 'ToolsObj', 'FieldNoteObj', 'MapsObj']
+                }";
+
+                Notebook m = JsonConvert.DeserializeObject<Notebook>(json);
+
+                string name = m.TITLE;
+                // return loaded JSON Object
+                //return m;
+
+            }
+            */
+
+            public string ABSPATH { get; set; }
+        }
     }
 }
 

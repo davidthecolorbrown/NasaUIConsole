@@ -28,7 +28,7 @@ namespace SuitsUIConsole
             protected bool complete = false;
             protected bool started = false;
             protected DateTime started_at;
-            protected static List<Note> notebook;// = new List<Note>();
+            protected static List<Note> notebook = new List<Note>();
                                                  //protected Dictionary<string, Note> notebook = new Dictionary<string, Note>();
                                                  //private static List<Maps> map = new List<Maps>();
 
@@ -59,6 +59,14 @@ namespace SuitsUIConsole
 
                 // set title
                 this.title = title;
+
+                // instantiate notebook to create mission table of contents
+                Note tableOfContents = new Note();
+
+                // add first note into notebook
+                notebook.Add(tableOfContents);
+
+                Console.WriteLine("New Mission created with ID: " + id);
 
                 Console.WriteLine("New Mission created with ID: " + id);
             }
@@ -98,6 +106,13 @@ namespace SuitsUIConsole
                 get { return started_at; } // read
                 set { started_at = value; } // write
             }
+            //
+            public List<Note> NOTEBOOK
+            {
+                get {return notebook; }
+                set {notebook = value; }
+            }
+
             
             // method to call when starting the mission from main thread
             public static Task StartMission()

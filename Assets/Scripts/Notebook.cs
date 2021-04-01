@@ -14,7 +14,7 @@ namespace SuitsUIConsole
     // subclasses for Note; Instructions, Task, Tool, FieldNote
     namespace Mission
     { 
-        // SuitsUIConsole.MissionDetails.Notebook
+        // SuitsUIConsole.Mission.Notebook
         namespace Notebook
         {
             // SuitsUIConsole.MissionDetails.Notebook.Notes

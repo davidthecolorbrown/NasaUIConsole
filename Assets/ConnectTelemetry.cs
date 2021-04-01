@@ -17,7 +17,7 @@ using UnityEngine;
 //using UnityEngine.InputSystem;
 using TMPro;
 using SuitsUIConsole.Users;
-//using SuitsUIConsole.Datastream;
+using SuitsUIConsole.Datastream;
 
 public class ConnectTelemetry : MonoBehaviour
 {
@@ -48,6 +48,7 @@ public class ConnectTelemetry : MonoBehaviour
         ctrl = new MissionControl();
         display = ctrl.DISPLAY;
         //safe = ctrl.SAFE;
+
 
         // repeatedly calls UpdateVitals function every 1 second after 2 seconds
         InvokeRepeating("UpdateVitals", 2, 1);
@@ -110,4 +111,30 @@ public class ConnectTelemetry : MonoBehaviour
 
     }
 
+    // when application quits, save astronaut object
+    void OnApplicationQuit()
+    {
+        Debug.Log("Application ending after " + Time.time + " seconds");
+        //// create json string by loading from json file
+        ///Astronaut astro = new Astronaut();
+        //string abspath = "C:\\Users\\David\\source\\repos\\DataManager\\notebook.json";
+        //string abspath = @"C:\Users\David\source\repos\DataManager\notebook.json";
+        //////DataManager.SaveJSONFile(ctrl.ASTRONAUT, FileIO.abspath, false);
+
+        //List<Astronaut> astronauts = new List<Astronaut>();
+        List<Astronaut> astros = ctrl.ASTRONAUTS;
+        //astronauts = ctrl.ASTRONAUTS;
+        //FileIO.SaveJSONFile(astronauts[0], false);
+        FileIO.SaveJSONFile(astros[0], false);
+        Debug.Log("astros" + astros[0].FIRSTNAME + astros[0].LASTNAME);
+        //Debug.Log("astros" + astros[0].HOME);
+        //Debug.Log("astros" + astros[0].CURRPOSITION);
+
+        //notebook = (Notebook) FileIO.loadNotebookJSON(abspath);
+        //Console.WriteLine("mission TITLE: " + notebook.TITLE);
+        //Console.WriteLine("mission BODY: " + notebook.BODY);
+        //Console.WriteLine("mission DATE: " + notebook.DATE);
+
+        Debug.Log("Application ending after " + Time.time + " seconds");
+    }
 }
